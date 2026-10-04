@@ -1,0 +1,2891 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>James Carlo Ladra | Portfolio</title>
+
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            transition:
+                background 0.3s ease,
+                color 0.3s ease;
+        }
+
+        :root {
+            --bg: #0a0e1a;
+            --bg-secondary: #080b19;
+            --card: #151b2e;
+            --card-hover: #1b233b;
+            --text: #ffffff;
+            --text-secondary: #a9b1c6;
+            --muted: #8b93a7;
+            --border: rgba(255, 255, 255, 0.08);
+            --accent: #ffcc00;
+            --accent-blue: #5eb7ff;
+            --nav-bg: rgba(8, 11, 25, 0.95);
+            --shadow: rgba(0, 0, 0, 0.35);
+        }
+
+        body.light-mode {
+            --bg: #f5f7fb;
+            --bg-secondary: #ffffff;
+            --card: #ffffff;
+            --card-hover: #f0f3f9;
+            --text: #171b2b;
+            --text-secondary: #555e73;
+            --muted: #737b8e;
+            --border: rgba(20, 30, 50, 0.12);
+            --accent: #d49f00;
+            --accent-blue: #287ac0;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --shadow: rgba(0, 0, 0, 0.10);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            min-height: 78px;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.3s ease;
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1250px;
+            min-height: 78px;
+            margin: auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .nav-logo {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: #101010;
+            background: linear-gradient(
+                135deg,
+                #ffcc00,
+                #ff9d00
+            );
+            box-shadow:
+                0 5px 20px
+                rgba(255, 204, 0, 0.18);
+            cursor: pointer;
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            transform:
+                translateY(-2px)
+                rotate(-3deg);
+            box-shadow:
+                0 8px 25px
+                rgba(255, 204, 0, 0.30);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            position: relative;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--text);
+        }
+
+        nav ul li a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -9px;
+            width: 0;
+            height: 2px;
+            border-radius: 10px;
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--accent),
+                    #ff7b00
+                );
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        nav ul li a.active {
+            color: var(--text);
+        }
+
+        .theme-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .theme-btn:hover {
+            border-color: var(--accent);
+            transform:
+                rotate(15deg)
+                scale(1.05);
+        }
+
+        .menu-btn {
+            display: none;
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+            border-radius: 8px;
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+
+        /* =========================
+           GENERAL
+        ========================= */
+
+        .container {
+            width: 100%;
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .page {
+            display: none;
+            min-height: calc(100vh - 78px);
+        }
+
+        .page.active {
+            display: block;
+            animation: pageFade 0.4s ease;
+        }
+
+        @keyframes pageFade {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page-header {
+            padding: 5rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size:
+                clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+        }
+
+        .page-header h1 span {
+            color: var(--accent);
+        }
+
+        .page-header p {
+            color: var(--muted);
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: auto;
+            max-width: 1150px;
+            margin: auto;
+            padding: 4rem 2rem 5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5rem;
+            position: relative;
+        }
+
+        .hero-img-wrap {
+            position: relative;
+            width: 290px;
+            height: 290px;
+            flex-shrink: 0;
+            animation: fadeUp 0.8s ease;
+        }
+
+        .hero-img-wrap::before {
+            content: "";
+            position: absolute;
+            inset: -13px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+            border-top-color: transparent;
+            border-right-color: transparent;
+            animation: spin 6s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hero-img-wrap img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--card);
+            box-shadow:
+                0 0 50px
+                rgba(255, 204, 0, 0.12);
+        }
+
+        .hero-text {
+            max-width: 570px;
+            animation: fadeUp 0.8s ease 0.15s both;
+        }
+
+        .greeting {
+            color: var(--accent);
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-text h1 {
+            font-size:
+                clamp(2.5rem, 6vw, 4rem);
+            line-height: 1.15;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero-text h1 span {
+            color: var(--accent);
+        }
+
+        .role {
+            color: var(--accent-blue);
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 1.2rem;
+        }
+
+        .desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            max-width: 540px;
+            margin-bottom: 1.7rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.8rem;
+        }
+
+        .primary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.5rem;
+            border-radius: 8px;
+            background: var(--accent);
+            color: #111;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            border: 1px solid var(--accent);
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 10px 25px
+                rgba(255, 204, 0, 0.18);
+        }
+
+        .secondary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.85rem 1.5rem;
+            border-radius: 8px;
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .secondary-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .socials {
+            display: flex;
+            gap: 14px;
+        }
+
+        .socials a {
+            width: 38px;
+            height: 38px;
+            border-radius: 9px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s ease;
+        }
+
+        .socials img {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
+
+        .socials a:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+
+        /* =========================
+           ABOUT PREVIEW
+        ========================= */
+
+        .home-about {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 1.9rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+        }
+
+        .section-title span {
+            color: var(--accent);
+        }
+
+        .home-about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .home-about p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quote-card {
+            min-height: 230px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            align-items: flex-end;
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--card),
+                    var(--bg)
+                );
+            box-shadow:
+                0 15px 40px
+                var(--shadow);
+        }
+
+        .quote-card h3 {
+            font-size: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .quote-card span {
+            color: var(--accent);
+        }
+
+        /* =========================
+           SKILLS
+        ========================= */
+
+        .skills-preview {
+            padding: 4rem 0 5rem;
+        }
+
+        .skills-categories {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.7rem;
+            transition: 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent);
+            background: var(--card-hover);
+            box-shadow:
+                0 12px 30px
+                var(--shadow);
+        }
+
+        .skill-category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-category-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: rgba(255, 204, 0, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .skill-category h3 {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .skill-category h3 span {
+            color: var(--accent);
+        }
+
+        .skill-category-description {
+            color: var(--muted);
+            font-size: 0.78rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .skill-tag {
+            padding: 0.55rem 0.85rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .skill-tag .tag-icon {
+            margin-right: 0.3rem;
+        }
+
+        /* =========================
+           ABOUT PAGE
+        ========================= */
+
+        .about-section {
+            padding: 3rem 0 5rem;
+        }
+
+        .about-main-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .info-badges {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .info-badge {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.1rem;
+            transition: 0.3s ease;
+        }
+
+        .info-badge:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+
+        .info-badge .ico {
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-badge .label {
+            color: var(--muted);
+            font-size: 0.72rem;
+        }
+
+        .info-badge .value {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .education-section {
+            margin-top: 5rem;
+        }
+
+        .education-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .education-card {
+            display: flex;
+            gap: 1.2rem;
+            padding: 1.3rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: 0.3s ease;
+        }
+
+        .education-card:hover {
+            transform: translateX(5px);
+            border-color: var(--accent);
+        }
+
+        .education-icon {
+            min-width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: rgba(255, 204, 0, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+        }
+
+        .education-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .education-card p {
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+
+        .education-card small {
+            color: var(--accent);
+            font-size: 0.72rem;
+        }
+
+        .hobbies-section {
+            margin-top: 5rem;
+        }
+
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+        }
+
+        .hobby-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            transition: 0.3s ease;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-7px);
+            border-color: var(--accent);
+            box-shadow:
+                0 10px 25px
+                var(--shadow);
+        }
+
+        .hobby-icon {
+            font-size: 2rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .hobby-card h3 {
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .hobby-card p {
+            color: var(--muted);
+            font-size: 0.72rem;
+        }
+
+        /* =========================
+           PROJECTS
+        ========================= */
+
+        .projects-section {
+            padding: 3rem 0 5rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: 0.35s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow:
+                0 15px 35px
+                var(--shadow);
+        }
+
+        .project-thumb {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            background:
+                linear-gradient(
+                    135deg,
+                    #101a30,
+                    #1c2945
+                );
+            overflow: hidden;
+        }
+
+        /*
+        ========================================
+        RESTAURANT CHATBOT IMAGE
+        ========================================
+        */
+
+        .project-thumb img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover .project-thumb img {
+            transform: scale(1.05);
+        }
+
+        body.light-mode .project-thumb {
+            background:
+                linear-gradient(
+                    135deg,
+                    #e7ecf5,
+                    #dce4f1
+                );
+        }
+
+        .project-info {
+            padding: 1.3rem;
+        }
+
+        .project-info h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-info p {
+            color: var(--muted);
+            font-size: 0.82rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        /* =========================
+           PROJECT IMAGE MODAL
+        ========================= */
+
+        .project-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 5000;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .project-modal.show {
+            display: flex;
+            animation: modalFade 0.3s ease;
+        }
+
+        @keyframes modalFade {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .project-modal-content {
+            width: 100%;
+            max-width: 850px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 1.5rem;
+            position: relative;
+            box-shadow:
+                0 25px 80px
+                rgba(0, 0, 0, 0.5);
+            animation: modalSlide 0.3s ease;
+        }
+
+        @keyframes modalSlide {
+            from {
+                transform: translateY(25px) scale(0.97);
+            }
+
+            to {
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .project-modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: rgba(0, 0, 0, 0.55);
+            color: white;
+            font-size: 1.4rem;
+            cursor: pointer;
+            z-index: 2;
+            transition: 0.3s ease;
+        }
+
+        .project-modal-close:hover {
+            background: var(--accent);
+            color: #111;
+            transform: rotate(90deg);
+        }
+
+        .project-modal-content h2 {
+            color: var(--text);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            padding-right: 45px;
+        }
+
+        .project-modal-content > p {
+            color: var(--muted);
+            font-size: 0.85rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .project-modal-image {
+            width: 100%;
+            max-height: 65vh;
+            object-fit: contain;
+            display: block;
+            border-radius: 12px;
+            background: #080b19;
+            border: 1px solid var(--border);
+        }
+
+        /* =========================
+           GALLERY
+        ========================= */
+
+        .gallery {
+            padding: 3rem 0 5rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            width: 100%;
+        }
+
+        .gallery-card {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: 0.3s ease;
+            box-shadow:
+                0 10px 25px
+                var(--shadow);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-7px);
+            border-color: var(--accent);
+            box-shadow:
+                0 15px 35px
+                var(--shadow);
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact-wrap {
+            max-width: 800px;
+            margin: auto;
+            padding: 3rem 2rem 5rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            padding: 0.95rem 1rem;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 0.85rem;
+            resize: vertical;
+            transition: 0.3s ease;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: var(--muted);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow:
+                0 0 0 3px
+                rgba(255, 204, 0, 0.08);
+        }
+
+        .contact-form button {
+            border: none;
+            padding: 0.95rem;
+            border-radius: 9px;
+            background: var(--accent);
+            color: #111;
+            font-family: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .contact-info-list {
+            display: grid;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+
+        .contact-info-item .ico {
+            width: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-info-item .ico img {
+            max-width: 25px;
+            max-height: 25px;
+            object-fit: contain;
+        }
+
+        .contact-info-item span:last-child {
+            font-size: 0.85rem;
+            word-break: break-word;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--muted);
+            font-size: 0.78rem;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+
+        /* =========================
+           ANIMATIONS
+        ========================= */
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================
+           LARGE SCREENS
+        ========================= */
+
+        @media (min-width: 1400px) {
+
+            .hero {
+                max-width: 1250px;
+                gap: 7rem;
+            }
+
+            .container {
+                max-width: 1250px;
+            }
+        }
+
+        /* =========================
+           TABLET
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .skills-categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hobbies-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero {
+                gap: 3rem;
+            }
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 768px) {
+
+            nav {
+                min-height: 70px;
+            }
+
+            .nav-container {
+                min-height: 70px;
+                padding: 0 1rem;
+                position: relative;
+            }
+
+            .nav-logo {
+                width: 42px;
+                height: 42px;
+            }
+
+            .menu-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                padding: 1.2rem;
+                background: var(--nav-bg);
+                border-bottom: 1px solid var(--border);
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+
+            nav ul.open {
+                display: flex;
+            }
+
+            nav ul li a::after {
+                bottom: -5px;
+            }
+
+            .theme-btn {
+                margin-left: auto;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 5rem 1.5rem 4rem;
+                flex-direction: column;
+                text-align: center;
+                gap: 3rem;
+            }
+
+            .hero-img-wrap {
+                width: 230px;
+                height: 230px;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .socials {
+                justify-content: center;
+            }
+
+            .home-about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hobbies-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .info-badges {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header {
+                padding: 3.5rem 1.5rem 1.5rem;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .quote-card {
+                min-height: 190px;
+            }
+
+            .project-modal {
+                padding: 1rem;
+            }
+
+            .project-modal-content {
+                padding: 1rem;
+                border-radius: 14px;
+            }
+
+            .project-modal-image {
+                max-height: 55vh;
+            }
+        }
+
+        /* =========================
+           SMALL MOBILE
+        ========================= */
+
+        @media (max-width: 480px) {
+
+            .hero-text h1 {
+                font-size: 2.3rem;
+            }
+
+            .hero-img-wrap {
+                width: 200px;
+                height: 200px;
+            }
+
+            .skills-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .skill-category {
+                padding: 1.3rem;
+            }
+
+            .skill-tag {
+                font-size: 0.75rem;
+                padding: 0.5rem 0.7rem;
+            }
+
+            .hobbies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .primary-btn,
+            .secondary-btn {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <nav>
+
+        <div class="nav-container">
+
+            <a
+                class="nav-logo"
+                onclick="showPage('home')"
+                title="Home"
+            >
+                JC
+            </a>
+
+            <ul id="navMenu">
+
+                <li>
+                    <a
+                        class="nav-link active"
+                        data-page="home"
+                        onclick="showPage('home')"
+                    >
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        class="nav-link"
+                        data-page="about"
+                        onclick="showPage('about')"
+                    >
+                        About Me
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        class="nav-link"
+                        data-page="projects"
+                        onclick="showPage('projects')"
+                    >
+                        Portfolio
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        class="nav-link"
+                        data-page="gallery"
+                        onclick="showPage('gallery')"
+                    >
+                        Gallery
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        class="nav-link"
+                        data-page="contact"
+                        onclick="showPage('contact')"
+                    >
+                        Contact
+                    </a>
+                </li>
+
+            </ul>
+
+            <button
+                class="theme-btn"
+                id="themeBtn"
+                onclick="toggleTheme()"
+                title="Toggle light/dark mode"
+            >
+                🌙
+            </button>
+
+            <button
+                class="menu-btn"
+                id="menuBtn"
+                onclick="toggleMenu()"
+            >
+                ☰
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         HOME
+    ========================= -->
+
+    <div id="home" class="page active">
+
+        <section class="hero">
+
+            <div class="hero-img-wrap">
+
+                <img
+                    src="profile.jpg"
+                    alt="James Carlo Ladra"
+                >
+
+            </div>
+
+            <div class="hero-text">
+
+                <p class="greeting">
+                    HELLO, I'M
+                </p>
+
+                <h1>
+                    James Carlo
+                    <span>Ladra</span>
+                </h1>
+
+                <p class="role">
+                    STUDENT
+                    &nbsp;|&nbsp;
+                    CODER
+                    &nbsp;|&nbsp;
+                    LIFELONG LEARNER
+                </p>
+
+                <p class="desc">
+                    I'm a Computer Science student at City College of Calamba
+                    who enjoys learning about programming,
+                    web development, technology, and
+                    creating projects that turn ideas
+                    into something real.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a
+                        class="primary-btn"
+                        onclick="showPage('projects')"
+                    >
+                        View My Portfolio →
+                    </a>
+
+                    <a
+                        class="secondary-btn"
+                        onclick="showPage('about')"
+                    >
+                        About Me
+                    </a>
+
+                </div>
+
+                <div class="socials">
+
+                    <a
+                        href="https://www.facebook.com/share/1J8VKr3tt8/"
+                        aria-label="Facebook"
+                    >
+                        <img
+                            src="fb.png"
+                            alt="Facebook"
+                        >
+                    </a>
+
+                    <a
+                        href="https://www.instagram.com/jimps_lr?stkn=MTI5azI5ano0bzlpZg=="
+                        aria-label="Instagram"
+                    >
+                        <img
+                            src="insta.png"
+                            alt="Instagram"
+                        >
+                    </a>
+
+                    <a
+                        href="mailto:jbladra@ccc.edu.ph"
+                        aria-label="Email"
+                    >
+                        <img
+                            src="gmail.png"
+                            alt="Email"
+                        >
+                    </a>
+
+                    <a
+                        href="https://www.tiktok.com/@jogo72638?_r=1&_t=ZS-9AGLVb0LtkT"
+                        aria-label="TikTok"
+                    >
+                        <img
+                            src="tiktok.png"
+                            alt="TikTok"
+                        >
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ABOUT PREVIEW -->
+
+        <section class="home-about">
+
+            <div class="container">
+
+                <h2 class="section-title">
+                    ABOUT
+                    <span>ME</span>
+                </h2>
+
+                <div class="home-about-grid">
+
+                    <div>
+
+                        <p>
+                            Hi! I'm James Carlo Ladra,
+                            20 years old, 3rd Year Computer Science student
+                            at City College of Calamba
+                        </p>
+
+                        <p>
+                            I'm currently developing my
+                            skills in programming, web
+                            development, databases, and
+                            different areas of technology.
+                        </p>
+
+                        <a
+                            class="primary-btn"
+                            onclick="showPage('about')"
+                        >
+                            Learn More About Me →
+                        </a>
+
+                    </div>
+
+                    <div class="quote-card">
+
+                        <h3>
+                            "Small steps today,
+                            <span>
+                                become big results tomorrow.
+                            </span>
+                            "
+                        </h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SKILLS
+        ========================= -->
+
+        <section class="skills-preview">
+
+            <div class="container">
+
+                <h2 class="section-title">
+                    MY
+                    <span>SKILLS</span>
+                </h2>
+
+                <div class="skills-categories">
+
+                    <!-- LIFE SKILLS -->
+
+                    <div class="skill-category">
+
+                        <div class="skill-category-header">
+
+                            <div class="skill-category-icon">
+                                🧠
+                            </div>
+
+                            <h3>
+                                LIFE <span>SKILLS</span>
+                            </h3>
+
+                        </div>
+
+                        <p class="skill-category-description">
+                            Personal qualities and skills
+                            that help me grow and work
+                            effectively with others.
+                        </p>
+
+                        <div class="skill-tags">
+
+                            <div class="skill-tag">
+                                <span class="tag-icon">🔄</span>
+                                Adaptable
+                            </div>
+
+                            <div class="skill-tag">
+                                <span class="tag-icon">💪</span>
+                                Hardworking
+                            </div>
+
+                            <div class="skill-tag">
+                                <span class="tag-icon">🧩</span>
+                                Problem Solving
+                            </div>
+
+                            <div class="skill-tag">
+                                <span class="tag-icon">💬</span>
+                                Friendly
+                            </div>
+
+                            <div class="skill-tag">
+                                <span class="tag-icon">🤝</span>
+                                Teamwork
+                            </div>
+
+                            <div class="skill-tag">
+                                <span class="tag-icon">⏰</span>
+                                Time Management
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PROGRAMMING & WEB -->
+
+                    <div class="skill-category">
+
+                        <div class="skill-category-header">
+
+                            <div class="skill-category-icon">
+                                💻
+                            </div>
+
+                            <h3>
+                                PROGRAMMING & <span>WEB</span>
+                            </h3>
+
+                        </div>
+
+                        <p class="skill-category-description">
+                            Programming languages and
+                            technologies I use for creating
+                            websites and applications.
+                        </p>
+
+                        <div class="skill-tags">
+
+                            <div class="skill-tag">
+                                <span class="tag-icon">🔶</span>
+                                HTML
+                            </div>
+
+                            <div class="skill-tag">
+                                <span class="tag-icon">🔵</span>
+                                CSS
+                            </div>
+
+                            <div class="skill-tag">
+                                <span class="tag-icon">🟨</span>
+                                JavaScript
+                            </div>
+
+                            <div class="skill-tag">
+                                <span class="tag-icon">☕</span>
+                                Java
+                            </div>
+
+                            <div class="skill-tag">
+                                <span class="tag-icon">🐍</span>
+                                C++ / C#
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DATABASE & TOOLS -->
+
+                    <div class="skill-category">
+
+                        <div class="skill-category-header">
+
+                            <div class="skill-category-icon">
+                                🗄️
+                            </div>
+
+                            <h3>
+                                DATABASE & <span>TOOLS</span>
+                            </h3>
+
+                        </div>
+
+                        <p class="skill-category-description">
+                            Tools and database technologies
+                            I use while developing projects.
+                        </p>
+
+                        <div class="skill-tags">
+
+                            <div class="skill-tag">
+                                <span class="tag-icon">🗄️</span>
+                                MySQL
+                            </div>
+
+                            <div class="skill-tag">
+                                <span class="tag-icon">💻</span>
+                                VS Code
+                            </div>
+
+                            <div class="skill-tag">
+                                <span class="tag-icon">🌐</span>
+                                Git
+                            </div>
+
+                            <div class="skill-tag">
+                                <span class="tag-icon">🐙</span>
+                                GitHub
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- OTHER SKILLS -->
+
+                    <div class="skill-category">
+
+                        <div class="skill-category-header">
+
+                            <div class="skill-category-icon">
+                                🎨
+                            </div>
+
+                            <h3>
+                                OTHER <span>SKILLS</span>
+                            </h3>
+
+                        </div>
+
+                        <p class="skill-category-description">
+                            Additional skills that support
+                            my creativity, learning,
+                            and projects.
+                        </p>
+
+                        <div class="skill-tags">
+
+                            <div class="skill-tag">
+                                <span class="tag-icon">🎨</span>
+                                Creativity
+                            </div>
+
+                            <div class="skill-tag">
+                                <span class="tag-icon">🔍</span>
+                                Curiosity
+                            </div>
+
+                            <div class="skill-tag">
+                                <span class="tag-icon">📚</span>
+                                Fast Learner
+                            </div>
+
+                            <div class="skill-tag">
+                                <span class="tag-icon">💡</span>
+                                Critical Thinking
+                            </div>
+
+                            <div class="skill-tag">
+                                <span class="tag-icon">🚀</span>
+                                Willing to Learn
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+            © 2026 James Carlo Ladra. All rights reserved.
+        </footer>
+
+    </div>
+
+
+    <!-- =========================
+         ABOUT PAGE
+    ========================= -->
+
+    <div id="about" class="page">
+
+        <div class="page-header">
+
+            <h1>
+                ABOUT
+                <span>ME</span>
+            </h1>
+
+            <p>
+                Get to know more about me, my education,
+                and the things I enjoy.
+            </p>
+
+        </div>
+
+        <section class="about-section">
+
+            <div class="container">
+
+                <div class="about-main-grid">
+
+                    <div class="about-text">
+
+                        <p>
+                            Hi! I'm James Carlo Ladra,
+                            a Computer Science student
+                            from the Philippines.
+                        </p>
+
+                        <p>
+                            I became interested in technology
+                            because I enjoy learning how
+                            applications, websites, databases,
+                            and other digital systems work.
+                        </p>
+
+                        <p>
+                            I'm still learning and improving,
+                            but every project gives me a chance
+                            to practice my skills and discover
+                            something new.
+                        </p>
+
+                        <div class="info-badges">
+
+                            <div class="info-badge">
+                                <div class="ico">🎂</div>
+                                <div class="label">
+                                    Age
+                                </div>
+                                <div class="value">
+                                    20 years old
+                                </div>
+                            </div>
+
+                            <div class="info-badge">
+                                <div class="ico">📍</div>
+                                <div class="label">
+                                    Location
+                                </div>
+                                <div class="value">
+                                    Philippines
+                                </div>
+                            </div>
+
+                            <div class="info-badge">
+                                <div class="ico">🎓</div>
+                                <div class="label">
+                                    Current Status
+                                </div>
+                                <div class="value">
+                                    Computer Science Student
+                                </div>
+                            </div>
+
+                            <div class="info-badge">
+                                <div class="ico">💻</div>
+                                <div class="label">
+                                    Dream Career Goal
+                                </div>
+                                <div class="value">
+                                    Software / Data Engineering
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="quote-card">
+
+                        <h3>
+                            "Keep learning.
+                            <span>
+                                Keep building.
+                            </span>
+                            Keep improving."
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EDUCATION -->
+
+                <div class="education-section">
+
+                    <h2 class="section-title">
+                        MY
+                        <span>EDUCATION</span>
+                    </h2>
+
+                    <div class="education-list">
+
+                        <div class="education-card">
+
+                            <div class="education-icon">
+                                🎓
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    City College of Calamba
+                                </h3>
+
+                                <p>
+                                    Bachelor of Science in Computer Science
+                                </p>
+
+                                <small>
+                                    College
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="education-card">
+
+                            <div class="education-icon">
+                                💻
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    CITI Global College Inc.
+                                </h3>
+
+                                <p>
+                                    Senior High School — ICT / IT
+                                </p>
+
+                                <small>
+                                    Senior High School
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="education-card">
+
+                            <div class="education-icon">
+                                📚
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Calamba Integrated School
+                                </h3>
+
+                                <p>
+                                    Junior High School
+                                </p>
+
+                                <small>
+                                    Junior High School
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="education-card">
+
+                            <div class="education-icon">
+                                🏫
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Jose Rizal Memorial School
+                                </h3>
+
+                                <p>
+                                    Elementary Education
+                                </p>
+
+                                <small>
+                                    Elementary
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HOBBIES -->
+
+                <div class="hobbies-section">
+
+                    <h2 class="section-title">
+                        MY
+                        <span>HOBBIES</span>
+                    </h2>
+
+                    <div class="hobbies-grid">
+
+                        <div class="hobby-card">
+
+                            <div class="hobby-icon">
+                                ✈️
+                            </div>
+
+                            <h3>
+                                Travel
+                            </h3>
+
+                            <p>
+                                I like to travel with my friends.
+                            </p>
+
+                        </div>
+
+
+                        <div class="hobby-card">
+
+                            <div class="hobby-icon">
+                                🎮
+                            </div>
+
+                            <h3>
+                                Gaming
+                            </h3>
+
+                            <p>
+                                Playing online games.
+                            </p>
+
+                        </div>
+
+
+                        <div class="hobby-card">
+
+                            <div class="hobby-icon">
+                                📷
+                            </div>
+
+                            <h3>
+                                Photography
+                            </h3>
+
+                            <p>
+                                I like to take pictures of random things and places.
+                            </p>
+
+                        </div>
+
+
+                        <div class="hobby-card">
+
+                            <div class="hobby-icon">
+                                🍜
+                            </div>
+
+                            <h3>
+                                Eating
+                            </h3>
+
+                            <p>
+                                Trying Different kinds of foods
+                            </p>
+
+                        </div>
+
+
+                        <div class="hobby-card">
+
+                            <div class="hobby-icon">
+                                🎌
+                            </div>
+
+                            <h3>
+                                Anime & Movies
+                            </h3>
+
+                            <p>
+                                Watching anime and
+                                different kinds of movies.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+            © 2026 James Carlo Ladra. All rights reserved.
+        </footer>
+
+    </div>
+
+
+    <!-- =========================
+         PORTFOLIO
+    ========================= -->
+
+    <div id="projects" class="page">
+
+        <div class="page-header">
+
+            <h1>
+                MY
+                <span>PORTFOLIO</span>
+            </h1>
+
+            <p>
+                A showcase of projects and things I've built.
+            </p>
+
+        </div>
+
+        <section class="projects-section">
+
+            <div class="container">
+
+                <div class="projects-grid">
+
+
+                    <!-- PROJECT 1 -->
+
+                    <div class="project-card">
+
+                        <div class="project-thumb">
+                            <img
+                                src="port.webp"
+                                alt="portfolio"
+                            >
+                        </div>
+
+                        <div class="project-info">
+
+                            <h3>
+                                Personal Portfolio Website
+                            </h3>
+
+                            <p>
+                                A responsive personal website
+                                created using HTML, CSS,
+                                and JavaScript, like this one.
+                            </p>
+
+                            <a
+                                href="#"
+                                class="project-link"
+                            >
+                                View Project →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PROJECT 2 - RESTAURANT CHATBOT -->
+
+                    <div class="project-card">
+
+                        <!--
+                            RESTAURANT CHATBOT PICTURE
+
+                            Put chatbot.jpg in the same folder
+                            as index.html.
+                        -->
+
+                        <div class="project-thumb">
+
+                            <img
+                                src="flow.jpg"
+                                alt="Restaurant Chatbot"
+                            >
+
+                        </div>
+
+                        <div class="project-info">
+
+                            <h3>
+                                Restaurant Chatbot
+                            </h3>
+
+                            <p>
+                                A programming project focused
+                                on conditions, loops, arrays,
+                                and chatbot-style interaction.
+                                It's like AI with stored fixed answers.
+                                We created this project in Data Structures
+                                and Algorithms for our final project.
+                                i only have the flowchart of it
+                            </p>
+                                View Project →
+                            
+
+                        </div>
+
+                    </div>
+
+
+                    
+
+                    <!-- PROJECT 4 -->
+
+                    <div class="project-card">
+
+                        <div class="project-thumb">
+                            <img
+                                src="ach.jpg"
+                                alt="achievements"
+                            >
+                        </div>
+
+                        <div class="project-info">
+
+                            <h3>
+                                Achievements
+                            </h3>
+
+                            <p>
+                                A collection of achievements,
+                                certificates, and milestones.
+                                
+                                -With Honor
+                                -Best in Work Immersion
+                                -Complition of NSTP/CWTS at PWU
+                            </p>
+
+                            <a
+                                href="#"
+                                class="project-link"
+                            >
+                                View Project →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+            © 2026 James Carlo Ladra. All rights reserved.
+        </footer>
+
+    </div>
+
+
+    <!-- =========================
+         GALLERY
+    ========================= -->
+
+    <div id="gallery" class="page">
+
+        <div class="page-header">
+
+            <h1>
+                MY
+                <span>GALLERY</span>
+            </h1>
+
+            <p>
+                A collection of my pictures, activities,
+                and experiences.
+            </p>
+
+        </div>
+
+        <section class="gallery">
+
+            <div class="container">
+
+                <div class="gallery-grid">
+
+                    <div class="gallery-card">
+                        <img
+                            src="yah.jpg"
+                            alt="Gallery Photo 1"
+                        >
+                    </div>
+
+                    <div class="gallery-card">
+                        <img
+                            src="up.jpg"
+                            alt="Gallery Photo 2"
+                        >
+                    </div>
+
+                    <div class="gallery-card">
+                        <img
+                            src="sadboy.jpeg"
+                            alt="Gallery Photo 3"
+                        >
+                    </div>
+
+                    <div class="gallery-card">
+                        <img
+                            src="Venice.jpg"
+                            alt="Gallery Photo 4"
+                        >
+                    </div>
+
+                    <div class="gallery-card">
+                        <img
+                            src="draw.jpg"
+                            alt="Gallery Photo 5"
+                        >
+                    </div>
+
+                    <div class="gallery-card">
+                        <img
+                            src="bill.jpg"
+                            alt="Gallery Photo 6"
+                        >
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+            © 2026 James Carlo Ladra. All rights reserved.
+        </footer>
+
+    </div>
+
+
+    <!-- =========================
+         CONTACT
+    ========================= -->
+
+    <div id="contact" class="page">
+
+        <div class="page-header">
+
+            <h1>
+                GET IN
+                <span>TOUCH</span>
+            </h1>
+
+            <p>
+                Have a question or want to work together?
+            </p>
+
+        </div>
+
+        <div class="contact-wrap">
+
+            <form
+                class="contact-form"
+                id="contactForm"
+            >
+
+                <input
+                    type="text"
+                    id="contactName"
+                    placeholder="Your Name"
+                    autocomplete="name"
+                    required
+                >
+
+                <input
+                    type="email"
+                    id="contactEmail"
+                    placeholder="Your Email"
+                    autocomplete="email"
+                    required
+                >
+
+                <textarea
+                    id="contactMessage"
+                    rows="6"
+                    placeholder="Your Message"
+                    required
+                ></textarea>
+
+                <button type="submit">
+                    Send Message
+                </button>
+
+            </form>
+
+
+            <div class="contact-info-list">
+
+                <div class="contact-info-item">
+
+                    <span class="ico">
+                      <a href="mailto:jbladra@ccc.edu.ph">
+                       <img src="gmail1.png" alt="Gmail">
+                      </a>
+                       
+
+                    </span>
+
+                    <span>
+                             jbladra@ccc.edu.ph
+                        </a>
+                        
+                    </span>
+
+                </div>
+
+
+                <div class="contact-info-item">
+
+                    <span class="ico">
+                        📍
+                    </span>
+
+                    <span>
+                        Philippines
+                    </span>
+
+                </div>
+
+
+                <div class="contact-info-item">
+
+                    <span class="ico">
+                          <a href="https://www.facebook.com/share/1JVria4Cub/">
+    <img src="fb1.png" alt="Gmail">
+</a>
+
+                    </span>
+
+                    <span>
+                        facebook.com/James Carlo Ladra
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <footer>
+            © 2026 James Carlo Ladra. All rights reserved.
+        </footer>
+
+    </div>
+
+
+    <!-- =========================
+         RESTAURANT CHATBOT IMAGE POPUP
+    ========================= -->
+
+    <div
+        class="project-modal"
+        id="projectModal"
+        onclick="closeProjectModal(event)"
+    >
+
+        <div
+            class="project-modal-content"
+            onclick="event.stopPropagation()"
+        >
+
+            <button
+                class="project-modal-close"
+                onclick="closeProjectModal()"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+            <h2>
+                Restaurant Chatbot
+            </h2>
+
+            <p>
+                Screenshot / picture of my Restaurant Chatbot project.
+            </p>
+
+            <img
+                src="chatbot.jpg"
+                alt="Restaurant Chatbot Project"
+                class="project-modal-image"
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        /* =========================
+           PAGE NAVIGATION
+        ========================= */
+
+        function showPage(pageId) {
+
+            const pages =
+                document.querySelectorAll('.page');
+
+            pages.forEach(page => {
+
+                page.classList.remove('active');
+
+            });
+
+
+            const selectedPage =
+                document.getElementById(pageId);
+
+            if (selectedPage) {
+
+                selectedPage.classList.add('active');
+
+            }
+
+
+            const navLinks =
+                document.querySelectorAll('.nav-link');
+
+            navLinks.forEach(link => {
+
+                link.classList.remove('active');
+
+                if (link.dataset.page === pageId) {
+
+                    link.classList.add('active');
+
+                }
+
+            });
+
+
+            document
+                .getElementById('navMenu')
+                .classList.remove('open');
+
+
+            window.scrollTo({
+
+                top: 0,
+
+                behavior: 'smooth'
+
+            });
+
+        }
+
+
+        /* =========================
+           MOBILE MENU
+        ========================= */
+
+        function toggleMenu() {
+
+            const menu =
+                document.getElementById('navMenu');
+
+            menu.classList.toggle('open');
+
+        }
+
+
+        /* =========================
+           DARK / LIGHT MODE
+        ========================= */
+
+        function toggleTheme() {
+
+            document.body.classList.toggle(
+                'light-mode'
+            );
+
+
+            const isLight =
+                document.body.classList.contains(
+                    'light-mode'
+                );
+
+
+            const themeBtn =
+                document.getElementById('themeBtn');
+
+
+            if (isLight) {
+
+                themeBtn.textContent = "☀️";
+
+                localStorage.setItem(
+                    'theme',
+                    'light'
+                );
+
+            } else {
+
+                themeBtn.textContent = "🌙";
+
+                localStorage.setItem(
+                    'theme',
+                    'dark'
+                );
+
+            }
+
+        }
+
+
+        window.addEventListener(
+            'DOMContentLoaded',
+            function () {
+
+                const savedTheme =
+                    localStorage.getItem('theme');
+
+
+                if (savedTheme === 'light') {
+
+                    document.body.classList.add(
+                        'light-mode'
+                    );
+
+
+                    document
+                        .getElementById('themeBtn')
+                        .textContent = "☀️";
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           RESTAURANT CHATBOT
+           PROJECT POPUP
+        ========================= */
+
+        function openProjectModal() {
+
+            const modal =
+                document.getElementById('projectModal');
+
+            modal.classList.add('show');
+
+            document.body.style.overflow = 'hidden';
+
+        }
+
+
+        function closeProjectModal(event) {
+
+            /*
+                If the user clicks something inside
+                the popup, don't close it.
+            */
+
+            if (
+                event &&
+                event.target !==
+                document.getElementById('projectModal')
+            ) {
+                return;
+            }
+
+
+            const modal =
+                document.getElementById('projectModal');
+
+            modal.classList.remove('show');
+
+            document.body.style.overflow = '';
+
+        }
+
+
+        /* =========================
+           CLOSE POPUP WITH ESCAPE
+        ========================= */
+
+        document.addEventListener(
+            'keydown',
+            function (event) {
+
+                if (event.key === 'Escape') {
+
+                    const modal =
+                        document.getElementById('projectModal');
+
+                    modal.classList.remove('show');
+
+                    document.body.style.overflow = '';
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           CONTACT FORM
+        ========================= */
+
+        document
+            .getElementById('contactForm')
+            .addEventListener(
+                'submit',
+                function (e) {
+
+                    e.preventDefault();
+
+
+                    const name =
+                        document
+                            .getElementById('contactName')
+                            .value
+                            .trim();
+
+
+                    const email =
+                        document
+                            .getElementById('contactEmail')
+                            .value
+                            .trim();
+
+
+                    const message =
+                        document
+                            .getElementById('contactMessage')
+                            .value
+                            .trim();
+
+
+                    if (
+                        name === "" ||
+                        email === "" ||
+                        message === ""
+                    ) {
+
+                        alert(
+                            "Please complete all fields before sending."
+                        );
+
+                        return;
+
+                    }
+
+
+                    const receiver =
+                        "jbladra@ccc.edu.ph";
+
+
+                    const subject =
+                        "Portfolio Contact - Message from " + name;
+
+
+                    const body =
+                        "Hello James,\n\n" +
+                        "You received a new message from your portfolio website.\n\n" +
+                        "Name: " + name + "\n" +
+                        "Email: " + email + "\n\n" +
+                        "Message:\n" +
+                        message +
+                        "\n\n" +
+                        "-------------------------\n" +
+                        "Sent from James Carlo Ladra's Portfolio";
+
+
+                    const mailtoLink =
+                        "mailto:" +
+                        receiver +
+                        "?subject=" +
+                        encodeURIComponent(subject) +
+                        "&body=" +
+                        encodeURIComponent(body);
+
+
+                    alert(
+                        "Your email app will open with your message prepared."
+                    );
+
+
+                    window.location.href =
+                        mailtoLink;
+
+
+                    this.reset();
+
+                }
+            );
+
+    </script>
+
+</body>
+
+</html>
